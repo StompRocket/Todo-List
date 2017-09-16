@@ -1,0 +1,47 @@
+.delete {
+  display: inline;
+  color: red;
+  opacity: 0.6;
+  transition-duration: 0.2s;
+  float: right;
+}
+
+.delete:hover {
+  cursor: pointer;
+  opacity: 1;
+  transition-duration: 0.2s;
+}
+
+.listItem p:focus {
+  outline: none;
+}
+
+#app {
+  font-family: Sans-Serif;
+  height: 100%;
+}
+
+.dragArea {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -142px;
+}
+
+body, html {
+  height: 100%;
+}
+
+.item-text {
+  display: inline;
+  width: 90%;
+}
+
+.item-text:focus {
+  outline: none;
+}
+
+#newItemForm, .push {
+  bottom: 0;
+  display: fixed;
+}
