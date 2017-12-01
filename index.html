@@ -14,6 +14,7 @@
     <draggable :list="items" class="dragArea">
       <div class="card" v-for="item in items">
         <div class="card-content">
+          <input type="checkbox" v-model="item.done" @click="update">
           <p class="item-text" contenteditable="true">{{item.message}}</p>
           <p class="delete" contenteditable="false" v-on:click="removeItem(item)"></p>
         </div>

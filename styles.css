@@ -34,7 +34,7 @@ body, html {
 
 .item-text {
   display: inline;
-  width: 90%;
+  max-width: 80%;
 }
 
 .item-text:focus {
