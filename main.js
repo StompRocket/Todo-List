@@ -1,9 +1,4 @@
-console.log = function (data) {
-window.alert(data)
-}
-console.throw = function (data) {
-window.alert(data)
-}
+
 try {
   var app = new Vue({
     el: '#app',
@@ -13,7 +8,7 @@ try {
       lastSaved: 'none'
     },
     computed: {
-      
+
       noItems: function () {
         if (this.items.length > 0) {
           return false
@@ -31,7 +26,7 @@ try {
         return usDate
       },
       init: function() {
-      
+
         if (localStorage.getItem('todoList')) {
           app.items = JSON.parse(localStorage.getItem('todoList'))
           app.lastSaved = JSON.parse(localStorage.getItem('lastSaved'))
@@ -76,4 +71,3 @@ try {
 } catch (err) {
   window.alert(err)
 }
-

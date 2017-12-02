@@ -1,51 +1,51 @@
 <!doctype html>
 <html>
 
-<head>
-  <title>List</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.2/css/bulma.min.css">
-  <link rel="stylesheet" href="styles.css">
+  <head>
+    <title>List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.2/css/bulma.min.css">
+    <link rel="stylesheet" href="styles.css">
 
-</head>
+  </head>
 
-<body>
-    <h1 class="title is-1">To Do Beta</h1>
-  <main id="app" >
-    <div class="container">
-    <h1 class="title is-1">List</h1> <p>Last Saved: {{lastSaved}},  {{items.length}} Items</p>
-    <p v-if="noItems">No Items</p>
-    <draggable :list="items" class="dragArea">
-      <div class="card" v-for="item in items">
-        <div v-bind:class="{'done': item.done}" class="card-content">
-          <input type="checkbox" v-model="item.done" @click="update">
-          <input class="item-text" @keyup="update" v-model="item.message">
-          <p class="delete" contenteditable="false" v-on:click="removeItem(item)"></p>
-        </div>
+  <body>
+    <main id="app">
+      <div class="container">
+        <h1 class="title is-1">List</h1>
+        <p>Last Saved: {{lastSaved}}, {{items.length}} Items</p>
+        <p v-if="noItems">No Items</p>
+        <draggable :list="items" class="dragArea">
+          <div class="card" v-for="item in items">
+            <div v-bind:class="{'done': item.done}" class="card-content">
+              <input type="checkbox" v-model="item.done" @click="update">
+              <input class="item-text" @keyup="update" v-model="item.message">
+              <p class="delete" contenteditable="false" v-on:click="removeItem(item)"></p>
+            </div>
+          </div>
+        </draggable>
       </div>
-    </draggable>
-    </div>
-    <div id="formContainer">
-    <form id="newItemForm" class="box" v-on:submit.prevent="newItemMethod">
-      <div id="newItem" class="field">
-        <label class="label">Create a new item</label>
-        <div class="control">
-          <input class="input" type="text" required v-model="newItem" placeholder="Buy apples">
-        </div>
+      <div id="formContainer">
+        <form id="newItemForm" class="box" v-on:submit.prevent="newItemMethod">
+          <div id="newItem" class="field">
+            <label class="label">Create a new item</label>
+            <div class="control">
+              <input class="input" type="text" required v-model="newItem" placeholder="Buy apples">
+            </div>
+
+          </div>
+
+        </form>
 
       </div>
 
-    </form>
+    </main>
+    <script src="vue.min.js"></script>
+    <!-- CDNJS :: Sortable (https://cdnjs.com/) -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/Sortable/1.6.0/Sortable.min.js"></script>
 
-    </div>
-    
-  </main>
-  <script src="vue.min.js"></script>
-  <!-- CDNJS :: Sortable (https://cdnjs.com/) -->
-  <script src="//cdnjs.cloudflare.com/ajax/libs/Sortable/1.6.0/Sortable.min.js"></script>
-
-  <!-- CDNJS :: Vue.Draggable (https://cdnjs.com/) -->
-  <script src="//cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.14.1/vuedraggable.min.js"></script>
-  <script src="main.js"></script>
-</body>
+    <!-- CDNJS :: Vue.Draggable (https://cdnjs.com/) -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.14.1/vuedraggable.min.js"></script>
+    <script src="main.js"></script>
+  </body>
 
 </html>
