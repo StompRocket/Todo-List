@@ -16,12 +16,14 @@
   outline: none;
 }
 
-body, html {
+body, html, #app {
   height: 100%;
   font-family: Sans-Serif;
+  overflow-y: hidden;
 }
 
 main {
+  height: 100%;
   padding-top: 5%;
 }
 
@@ -36,13 +38,23 @@ main {
 }
 
 #newItemForm {
-  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+#listContainer {
+  height: 70%;
+  width: 100%;
+}
+
+.dragArea {
+  overflow-y: scroll;
+  height: 100%;
+  padding: 1%;
 }
 
 #formContainer {
-  bottom: 0;
-  position: fixed;
-  height: 7vw;
+  height: 15%;
+  padding-top: 2%;
   padding-left: 5%;
   padding-right: 5%;
   width: 100%;
