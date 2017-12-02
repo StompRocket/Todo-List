@@ -1,15 +1,40 @@
+console.log = function (data) {
+window.alert(data)
+}
+console.throw = function (data) {
+window.alert(data)
+}
 try {
   var app = new Vue({
     el: '#app',
     data: {
       newItem: '',
-      items: []
+      items: [],
+      lastSaved: 'none'
     },
-
+    computed: {
+      
+      noItems: function () {
+        if (this.items.length > 0) {
+          return false
+        } else {
+          return true
+        }
+      }
+    },
     methods: {
+      getDate: function () {
+        let date = new Date();
+        let utcDate = new Date(date.toUTCString());
+        utcDate.setHours(utcDate.getHours()-8);
+        let usDate = new Date(utcDate);
+        return usDate
+      },
       init: function() {
+      
         if (localStorage.getItem('todoList')) {
           app.items = JSON.parse(localStorage.getItem('todoList'))
+          app.lastSaved = JSON.parse(localStorage.getItem('lastSaved'))
         } else {
           app.items.push({
             message: 'Welcome To List',
@@ -22,7 +47,10 @@ try {
         }
       },
       update: function() {
+         //console.log(JSON.stringify(this.items))
         localStorage.setItem('todoList', JSON.stringify(this.items))
+        localStorage.setItem('lastSaved', JSON.stringify(app.getDate()))
+        app.lastSaved = app.getDate()
       },
       newItemMethod: function() {
         try {
@@ -48,3 +76,4 @@ try {
 } catch (err) {
   window.alert(err)
 }
+

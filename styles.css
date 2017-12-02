@@ -16,32 +16,34 @@
   outline: none;
 }
 
-#app {
-  font-family: Sans-Serif;
-  height: 100%;
-}
 
-.dragArea {
-  min-height: 100%;
-  height: auto !important;
-  height: 100%;
-  margin: 0 auto -142px;
-}
 
-body, html {
+body, html, main {
   height: 100%;
+   font-family: Sans-Serif;
 }
 
 .item-text {
   display: inline;
   max-width: 80%;
+  border: none;
 }
 
 .item-text:focus {
   outline: none;
 }
 
-#newItemForm, .push {
+#newItemForm {
+  margin-bottom: 5px; 
+}
+#formContainer {
   bottom: 0;
-  display: fixed;
+  position: fixed;
+  height: 7vw;
+  padding-left: 5%;
+  padding-right: 5%;
+  width: 100%;
+}
+.done {
+opacity: 0.5;
 }

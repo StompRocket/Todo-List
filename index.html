@@ -2,26 +2,30 @@
 <html>
 
 <head>
-  <title>To Do List Beta</title>
+  <title>List</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.2/css/bulma.min.css">
   <link rel="stylesheet" href="styles.css">
 
 </head>
 
 <body>
-  <main id="app" class="box container">
     <h1 class="title is-1">To Do Beta</h1>
+  <main id="app" >
+    <div class="container">
+    <h1 class="title is-1">List</h1> <p>Last Saved: {{lastSaved}},  {{items.length}} Items</p>
+    <p v-if="noItems">No Items</p>
     <draggable :list="items" class="dragArea">
       <div class="card" v-for="item in items">
-        <div class="card-content">
+        <div v-bind:class="{'done': item.done}" class="card-content">
           <input type="checkbox" v-model="item.done" @click="update">
-          <p class="item-text" contenteditable="true">{{item.message}}</p>
+          <input class="item-text" @keyup="update" v-model="item.message">
           <p class="delete" contenteditable="false" v-on:click="removeItem(item)"></p>
         </div>
       </div>
     </draggable>
-    <div class="push"></div>
-    <form id="newItemForm" v-on:submit.prevent="newItemMethod">
+    </div>
+    <div id="formContainer">
+    <form id="newItemForm" class="box" v-on:submit.prevent="newItemMethod">
       <div id="newItem" class="field">
         <label class="label">Create a new item</label>
         <div class="control">
@@ -32,6 +36,8 @@
 
     </form>
 
+    </div>
+    
   </main>
   <script src="vue.min.js"></script>
   <!-- CDNJS :: Sortable (https://cdnjs.com/) -->
