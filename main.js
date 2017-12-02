@@ -1,11 +1,64 @@
+function init () {
+  if (localStorage.getItem('todoList')) {
+    if (app.loginState) {
+      firebase.database().ref('/users/' + app.user.uid + '/list/').once('value').then(function (snapshot) {
+        if (snapshot.val().items) {
+          if (snapshot.val().utcTime > JSON.parse(localStorage.getItem('lastSavedUtc'))) {
+            app.items = snapshot.val().items
+            app.lastSaved = snapshot.val().time
+            console.log('from firebase')
+          } else {
+            app.items = JSON.parse(localStorage.getItem('todoList'))
+            app.lastSaved = JSON.parse(localStorage.getItem('lastSaved'))
+            console.log('from local')
+          }
+        } else {
+          app.items = JSON.parse(localStorage.getItem('todoList'))
+          app.lastSaved = JSON.parse(localStorage.getItem('lastSaved'))
+        }
+      })
+    }
+    app.items = JSON.parse(localStorage.getItem('todoList'))
+    app.lastSaved = JSON.parse(localStorage.getItem('lastSaved'))
+  } else {
+    if (app.loginState) {
+      firebase.database().ref('/users/' + app.user.uid + '/list/').once('value').then(function (snapshot) {
+        if (snapshot.val().items) {
+          app.items = snapshot.val().items
+          app.lastSaved = snapshot.val().time
+        }
+      })
+    } else {
+      app.items.push({
+        message: 'Welcome To List',
+        done: false
+      })
+      app.items.push({
+        message: 'Bar',
+        done: true
+      })
+    }
+  }
+}
 
 try {
+  var provider = new firebase.auth.GoogleAuthProvider()
+  var database = firebase.database()
   var app = new Vue({
     el: '#app',
     data: {
+      loginText: 'Login',
+      loginState: false,
       newItem: '',
       items: [],
-      lastSaved: 'none'
+      lastSaved: 'none',
+      user: {
+        name: null,
+        email: null,
+        photoUrl: null,
+        emailVerified: null,
+        uid: null
+      }
     },
     computed: {
 
@@ -17,37 +70,84 @@ try {
         }
       }
     },
-    methods: {
-      getDate: function () {
-        let date = new Date();
-        let utcDate = new Date(date.toUTCString());
-        utcDate.setHours(utcDate.getHours()-8);
-        let usDate = new Date(utcDate);
-        return usDate
-      },
-      init: function() {
-
-        if (localStorage.getItem('todoList')) {
-          app.items = JSON.parse(localStorage.getItem('todoList'))
-          app.lastSaved = JSON.parse(localStorage.getItem('lastSaved'))
-        } else {
-          app.items.push({
-            message: 'Welcome To List',
-            done: false
+    mounted: function () {
+      firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+          app.loginText = 'Logout'
+          app.loginState = true
+          app.user.name = user.displayName
+          app.user.email = user.email
+          app.user.photoUrl = user.photoURL
+          app.user.emailVerified = user.emailVerified
+          app.user.uid = user.uid
+          firebase.database().ref('users/' + user.uid + '/info/').set({
+            username: user.displayName,
+            email: user.email,
+            profile_picture: user.photoURL,
+            lastSeen: app.getDate()
           })
-          app.items.push({
-            message: 'Bar',
-            done: true
+          init()
+        } else {
+          app.loginText = 'Login'
+          app.loginState = false
+          init()
+        }
+      })
+    },
+    methods: {
+      login: function () {
+        var user = firebase.auth().currentUser
+
+        if (user) {
+  // User is signed in.
+          firebase.auth().signOut().then(function () {
+  // Sign-out successful.
+          }).catch(function (error) {
+  // An error happened.
+          })
+        } else {
+  // No user is signed in.
+          firebase.auth().signInWithPopup(provider).then(function (result) {
+// This gives you a Google Access Token. You can use it to access the Google API.
+            var token = result.credential.accessToken
+// The signed-in user info.
+            var user = result.user
+
+// ...
+          }).catch(function (error) {
+// Handle Errors here.
+            var errorCode = error.code
+            var errorMessage = error.message
+// The email of the user's account used.
+            var email = error.email
+// The firebase.auth.AuthCredential type that was used.
+            var credential = error.credential
+// ...
           })
         }
       },
-      update: function() {
-         //console.log(JSON.stringify(this.items))
-        localStorage.setItem('todoList', JSON.stringify(this.items))
-        localStorage.setItem('lastSaved', JSON.stringify(app.getDate()))
-        app.lastSaved = app.getDate()
+      getUtc: function () {
+        return new Date().getTime()
       },
-      newItemMethod: function() {
+      getDate: function () {
+        return new Date().toLocaleString()
+      },
+
+      update: function () {
+         // console.log(JSON.stringify(this.items))
+        let saveTime = app.getDate()
+        let utcSaveTime = app.getUtc()
+        window.localStorage.setItem('todoList', JSON.stringify(this.items))
+        window.localStorage.setItem('lastSaved', JSON.stringify(saveTime))
+        window.localStorage.setItem('lastSavedUtc', JSON.stringify(utcSaveTime))
+        window.firebase.database().ref('users/' + app.user.uid + '/list/').set({
+          items: this.items,
+          time: saveTime,
+          utcTime: utcSaveTime
+        })
+        app.lastSaved = saveTime
+      },
+      newItemMethod: function () {
         try {
           this.items.push({
             message: this.newItem,
@@ -59,15 +159,13 @@ try {
           alert(err)
         }
       },
-      removeItem: function(item) {
+      removeItem: function (item) {
         var index = this.items.indexOf(item)
         this.items.splice(index, 1)
         app.update()
       }
     }
   })
-
-  window.onload = app.init
 } catch (err) {
   window.alert(err)
 }
