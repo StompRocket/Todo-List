@@ -55,6 +55,9 @@
 
 
           <p>Last Saved: {{lastSaved}}, {{items.length}} Items</p>
+
+
+
           <p v-if="noItems">No Items</p>
           <draggable :list="items" @end="update" class="dragArea">
             <div class="card" v-for="item in items">

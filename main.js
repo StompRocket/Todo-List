@@ -47,6 +47,7 @@ try {
   var app = new Vue({
     el: '#app',
     data: {
+      viewMode: 'all',
       loginText: 'Login',
       loginState: false,
       newItem: '',
@@ -99,6 +100,12 @@ try {
       })
     },
     methods: {
+      viewActive: function () {
+        app.viewMode = 'active'
+      },
+      viewAll: function () {
+        app.viewMode = 'all'
+      },
       login: function () {
         var user = firebase.auth().currentUser
 
@@ -153,7 +160,7 @@ try {
       },
       newItemMethod: function () {
         try {
-          this.items.push({
+          this.items.unshift({
             message: this.newItem,
             done: false
           })
