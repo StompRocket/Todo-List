@@ -3,9 +3,8 @@
 
   <head>
     <title>List</title>
-    <script src="https://use.fontawesome.com/45a3447fae.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.2/css/bulma.min.css">
-    <link rel="stylesheet" href="styles.css">
+
+
 
   </head>
 
@@ -85,12 +84,11 @@
 
       </main>
     </div>
-    <script src="vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue" charset="utf-8"></script>
     <!-- CDNJS :: Sortable (https://cdnjs.com/) -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/Sortable/1.6.0/Sortable.min.js"></script>
-
+    <script src="//cdn.jsdelivr.net/npm/sortablejs@1.7.0/Sortable.min.js"></script>
     <!-- CDNJS :: Vue.Draggable (https://cdnjs.com/) -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.14.1/vuedraggable.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.15.0/vuedraggable.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.7.0/firebase.js"></script>
     <script>
       // Initialize Firebase
@@ -99,12 +97,12 @@
         authDomain: "list-40a3a.firebaseapp.com",
         databaseURL: "https://list-40a3a.firebaseio.com",
         projectId: "list-40a3a",
-        storageBucket: "",
+        storageBucket: "list-40a3a.appspot.com",
         messagingSenderId: "866203114923"
       };
       firebase.initializeApp(config);
     </script>
-    <script src="main.js"></script>
+    <script src="./dist/bundle.js "></script>
   </body>
 
 </html>
