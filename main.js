@@ -87,6 +87,10 @@ try {
             lastSeen: app.getDate()
           })
           init()
+
+          firebase.database().ref('users/' + user.uid + '/list/').on('value', function (snapshot) {
+          init()
+          })
         } else {
           app.loginText = 'Login'
           app.loginState = false

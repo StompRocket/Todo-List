@@ -27,7 +27,7 @@ main {
 
 .item-text {
   display: inline;
-  width: 80%;
+  width: auto;
   border: none;
 }
 
