@@ -34,7 +34,11 @@ function init () {
         done: false
       })
       app.items.push({
-        message: 'Bar',
+        message: 'Login or create an account',
+        done: false
+      })
+      app.items.push({
+        message: 'A completed task',
         done: true
       })
     }
