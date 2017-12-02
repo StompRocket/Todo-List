@@ -7,10 +7,25 @@ function init () {
             app.items = snapshot.val().items
             app.lastSaved = snapshot.val().time
             console.log('from firebase')
+            let saveTime = app.getDate()
+            let utcSaveTime = app.getUtc()
+            window.localStorage.setItem('todoList', JSON.stringify(app.items))
+            window.localStorage.setItem('lastSaved', JSON.stringify(saveTime))
+            window.localStorage.setItem('lastSavedUtc', JSON.stringify(utcSaveTime))
           } else {
             app.items = JSON.parse(localStorage.getItem('todoList'))
             app.lastSaved = JSON.parse(localStorage.getItem('lastSaved'))
             console.log('from local')
+            if (JSON.parse(localStorage.getItem('lastSavedUtc')) > snapshot.val().utcTime) {
+              console.log('saving local version to global')
+              let saveTime = app.getDate()
+              let utcSaveTime = app.getUtc()
+              window.firebase.database().ref('users/' + app.user.uid + '/list/').set({
+                items: app.items,
+                time: saveTime,
+                utcTime: utcSaveTime
+              })
+            }
           }
         } else {
           app.items = JSON.parse(localStorage.getItem('todoList'))
@@ -155,11 +170,13 @@ try {
         window.localStorage.setItem('todoList', JSON.stringify(this.items))
         window.localStorage.setItem('lastSaved', JSON.stringify(saveTime))
         window.localStorage.setItem('lastSavedUtc', JSON.stringify(utcSaveTime))
-        window.firebase.database().ref('users/' + app.user.uid + '/list/').set({
-          items: this.items,
-          time: saveTime,
-          utcTime: utcSaveTime
-        })
+        if (app.loginState) {
+          window.firebase.database().ref('users/' + app.user.uid + '/list/').set({
+            items: this.items,
+            time: saveTime,
+            utcTime: utcSaveTime
+          })
+        }
         app.lastSaved = saveTime
       },
       newItemMethod: function () {
