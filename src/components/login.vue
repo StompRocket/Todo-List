@@ -11,7 +11,11 @@
     </form>
     <div class="LoginWithOther">
       <h3>Or...</h3>
-      <button type="button">Login With Google</button>
+      <div class="vcenter">
+        <button type="button">Login With Google</button>
+      </div>
+
+
     </div>
   </div>
 
