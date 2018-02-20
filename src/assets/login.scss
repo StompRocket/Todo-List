@@ -1,0 +1,65 @@
+.login {
+  background-color: #40A794;
+  background-attachment: fixed;
+}
+
+.loginContainer {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: white;
+  height: 60%;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5%;
+
+  .header {
+    width: 20%;
+  }
+
+  h1 {
+    font-size: 3vw;
+    border-bottom-color: #CFB074;
+    border-bottom-style: solid;
+    border-width: thick;
+    display: block;
+  }
+}
+
+.loginWithEmailForm {
+  width: 50%;
+  border-right-style: solid;
+  border-width: thin;
+  margin-top: 5%;
+  height: 80%;
+  display: inline-block;
+  padding-left: 3%;
+  padding-right: 3%;
+
+  input {
+    margin: 2%;
+    height: 3vw;
+    font-size: 1vw;
+    width: 93%;
+    display: block;
+  }
+
+  button {
+    height: 2vw;
+    width: 4vw;
+    margin: 2%;
+    background-color: #40A794;
+    border: none;
+    border-radius: 3px;
+    color: white;
+  }
+}
+
+.LoginWithOther {
+  display: inline-block;
+  width: 49%;
+  margin-top: 5%;
+  height: 80%;
+}
