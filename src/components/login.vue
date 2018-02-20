@@ -23,6 +23,7 @@
 </template>
 <script>
 import '../assets/login.scss'
+
 export default {
   name: "Login",
   data: () => ({
