@@ -1,6 +1,12 @@
 .login {
   background-color: #40A794;
   background-attachment: fixed;
+
+  .vcenter {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 }
 
 .loginContainer {
@@ -16,7 +22,22 @@
   padding: 5%;
 
   .header {
-    width: 20%;
+    width: 100%;
+    margin-bottom: 1%;
+    display: block;
+    height: 4vw;
+
+    h1 {
+      width: 25%;
+    }
+
+    .left {
+      float: left;
+    }
+
+    .right {
+      float: right;
+    }
   }
 
   h1 {
@@ -26,17 +47,30 @@
     border-width: thick;
     display: block;
   }
-}
 
-.loginWithEmailForm {
-  width: 50%;
-  border-right-style: solid;
-  border-width: thin;
-  margin-top: 5%;
-  height: 80%;
-  display: inline-block;
-  padding-left: 3%;
-  padding-right: 3%;
+  .googleBTN {
+    height: 3vw;
+    width: 15vw;
+    margin: 2%;
+    font-weight: 500;
+    font-size: 1.5vw;
+    background-color: #CFB074;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    transition-duration: 0.25s;
+  }
+
+  .googleBTN:hover {
+    transition-duration: 0.25s;
+    background-color: #c6a76d;
+  }
+
+  h3 {
+    margin: 5%;
+    font-size: 2vw;
+    color: #38706F;
+  }
 
   input {
     margin: 2%;
@@ -46,20 +80,46 @@
     display: block;
   }
 
-  button {
-    height: 2vw;
-    width: 4vw;
+  input:focus {
+    outline: none;
+  }
+
+  .submitBTN {
+    height: 3vw;
+    width: 6vw;
     margin: 2%;
+    font-weight: 500;
+    font-size: 1.5vw;
     background-color: #40A794;
     border: none;
     border-radius: 3px;
     color: white;
+    transition-duration: 0.25s;
+  }
+
+  .submitBTN:hover {
+    transition-duration: 0.25s;
+    background-color: #3b9c8a;
   }
 }
 
-.LoginWithOther {
-  display: inline-block;
-  width: 49%;
+.loginSide {
+  display: static;
+  width: 50%;
+  border-right-style: solid;
+  border-width: thin;
   margin-top: 5%;
   height: 80%;
+  padding-left: 3%;
+  padding-right: 3%;
+  float: left;
+}
+
+.LoginWithOther {
+  display: static;
+  width: 45%;
+  float: right;
+  margin-top: 5%;
+  height: 80%;
+  padding: none;
 }
