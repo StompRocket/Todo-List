@@ -1,41 +1,24 @@
 <template>
 <div id="login" class="page login">
   <div class="loginContainer">
-    <div class="header">
-      <h1 class="left">Login</h1>
-      <h1 class="right">Create</h1>
-    </div>
-    <div class="loginSide">
-      <div class="vcenter">
-        <form v-on:submit.prevent="loginWithEmail" class="loginWithEmailForm">
-          <input v-model="email" class="loginWithEmail" type="email" name="email" required value="" placeholder="Email">
-          <input v-model="password" class="loginWithPassword" type="password" name="password" value="" placeholder="Password" required>
-          <button class="submitBTN" type="submit" name="submit">Submit</button>
+    <h1>Login</h1>
 
-        </form>
-        <h3>Or...</h3>
+    <!--
+    <form v-on:submit.prevent="loginWithEmail" class="loginWithEmailForm">
+      <input v-model="email" class="loginWithEmail" type="email" name="email" required value="" placeholder="Email">
+      <input v-model="password" class="loginWithPassword" type="password" name="password" value="" placeholder="Password" required>
+      <button class="submitBTN" type="submit" name="submit">Submit</button>
 
-        <button class="googleBTN" @click="loginWithGoogle" type="button">Login With Google</button>
-      </div>
+    </form>
 
-    </div>
+    <h3>Or...</h3>
 
-    <div class="LoginWithOther">
-      <div class="vcenter">
-        <form v-on:submit.prevent="createWithEmail" class="loginWithEmailForm">
-          <input v-model="newEmail" class="loginWithEmail" type="email" name="email" required value="" placeholder="Email">
-          <input v-model="newPassword" class="loginWithPassword" type="password" name="password" value="" placeholder="Password" required>
-          <button class="submitBTN" type="submit" name="submit">Submit</button>
+    <button class="googleBTN" @click="loginWithGoogle" type="button">Login With Google</button>
 
-        </form>
-        <h3>Or...</h3>
+    <p>Don't have have an account? click here</p>
 
-        <button class="googleBTN" @click="loginWithGoogle" type="button">Create with Google</button>
-      </div>
+-->
 
-
-
-    </div>
   </div>
 
 </div>
