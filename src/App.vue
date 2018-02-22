@@ -18,6 +18,10 @@ var config = {
 };
 firebase.initializeApp(config);
 export default {
-  name: 'App'
+  name: 'App',
+  data: () => ({
+    uid: ''
+
+  }),
 }
 </script>

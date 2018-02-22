@@ -38,6 +38,7 @@ export default {
 
     if (user) {
       console.log('LOGIN loggedin');
+      this.$parent.uid = user.uid
       this.$router.push('app')
       // User is signed in.
     } else {
@@ -49,6 +50,7 @@ export default {
     loginWithGoogle() {
       var user = firebase.auth().currentUser;
       if (user) {
+        this.$parent.uid = user.uid
         this.$router.push('app')
         // User is signed in.
       } else {
@@ -57,6 +59,7 @@ export default {
           var token = result.credential.accessToken;
           // The signed-in user info.
           var user = result.user;
+          this.$parent.uid = user.uid
           this.$router.push('app')
           // ...
         }).catch((error) => {
@@ -77,6 +80,8 @@ export default {
 
       console.log(this.email, this.password);
       firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(() => {
+        var user = firebase.auth().currentUser;
+        this.$parent.uid = user.uid
         this.$router.push('app')
       }).catch((error) => {
         // Handle Errors here.
