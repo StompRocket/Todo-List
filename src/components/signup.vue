@@ -1,21 +1,21 @@
 <template>
 <div id="login" class="page login">
   <div class="loginContainer">
-    <h1>Login</h1>
+    <h1>Signup</h1>
     <hr>
 
 
-    <form v-on:submit.prevent="loginWithEmail" class="loginWithEmailForm">
+    <form v-on:submit.prevent="createWithEmail" class="loginWithEmailForm">
       <input v-model="email" class="loginWithEmail" type="email" name="email" required value="" placeholder="Email">
       <input v-model="password" class="loginWithPassword" type="password" name="password" value="" placeholder="Password" required>
-      <button class="submitBTN" type="submit" name="submit">Login</button>
+      <button class="submitBTN" type="submit" name="submit">Create!</button>
 
     </form>
 
     <h3>Or...</h3>
 
-    <button class="googleBTN" @click="loginWithGoogle" type="button">Login With Google</button>
-    <router-link class="signUp" :to="'signup'">Don't have have an account? click here</router-link>
+    <button class="googleBTN" @click="loginWithGoogle" type="button">Create With Google</button>
+    <router-link class="signUp" :to="'login'">Allready have an account? click here</router-link>
 
 
   </div>
@@ -31,7 +31,9 @@ export default {
   name: "Login",
   data: () => ({
     email: '',
-    password: ''
+    password: '',
+    newEmail: '',
+    newPassword: ''
   }),
   created() {
     var user = firebase.auth().currentUser;
@@ -73,10 +75,8 @@ export default {
       }
 
     },
-    loginWithEmail() {
-
-      console.log(this.email, this.password);
-      firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(() => {
+    createWithEmail() {
+      firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(() => {
         this.$router.push('app')
       }).catch((error) => {
         // Handle Errors here.
