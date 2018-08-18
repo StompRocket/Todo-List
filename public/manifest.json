@@ -1,0 +1,21 @@
+{
+  "name": "Stomp Rocket Todo",
+  "short_name": "SR Todo",
+  "lang": "en-US",
+  "icons": [{
+      "src": "/img/icons/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/icons/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "rgb(239, 189, 107)",
+  "theme_color": "rgb(239, 189, 107)"
+}

@@ -1,0 +1,35 @@
+$primary: #424242;
+$primary--light: rgba($primary, 0.8);
+$primary--hover: rgba(#292929, 0.5);
+$rounding: 10px;
+$rounding--small: 5px;
+$light: rgba(white, 0.9);
+.btn {
+  padding: 4% 4%;
+  background: #44abff;
+  border: none;
+  border-radius: $rounding--small;
+  color: white;
+  font-size: 1em;
+  display: block;
+  font-weight: 500;
+}
+
+@mixin dropshadow {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+@mixin center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@mixin card {
+  padding: 5%;
+  border-radius: $rounding;
+  @include dropshadow;
+}
+
+@mixin transition {
+  transition-duration: 0.25s;
+}

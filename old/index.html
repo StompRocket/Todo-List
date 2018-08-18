@@ -1,108 +1,17 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 
-  <head>
-    <title>List</title>
+<head>
+  <script src="http://localhost:8098"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Stomp Rocket Todo</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+</head>
 
-
-
-  </head>
-
-  <body>
-    <div id="app">
-      <nav class="navbar is-transparent">
-        <div class="navbar-brand">
-          <a class="navbar-item" href="./">
-            <h1 class="title">List</h1>
-          </a>
-          <div class="navbar-burger burger" data-target="navMenu">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </div>
-
-        <div class="navbar-menu" id="navMenu">
-
-
-          <div class="navbar-end">
-            <div class="navbar-item">
-              <div class="field is-grouped">
-                <p class="control">
-                  <a class="bd-tw-button button" data-social-network="Github" data-social-action="star" target="_blank" href="https://github.com/StompRocket/todo">
-            <span class="icon">
-              <i class="fa fa-github"></i>
-            </span>
-            <span>
-              Star
-            </span>
-          </a>
-                </p>
-                <p class="control">
-                  <a @click="login" class="button is-primary" href="#">
-            <span>{{loginText}}</span>
-          </a>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
-      <main>
-
-        <div id="listContainer" class="container">
-
-
-          <p>Last Saved: {{lastSaved}}, {{items.length}} Items</p>
-
-
-
-          <p v-if="noItems">No Items</p>
-          <draggable :list="items" @end="update" class="dragArea">
-            <div class="card" v-for="item in items">
-              <div v-bind:class="{'done': item.done}" class="card-content">
-                <input type="checkbox" v-model="item.done" @click="update">
-                <input class="item-text" @keyup="update" v-model="item.message">
-                <p class="delete" contenteditable="false" v-on:click="removeItem(item)"></p>
-              </div>
-            </div>
-          </draggable>
-        </div>
-        <div id="formContainer">
-          <form id="newItemForm" class="box" v-on:submit.prevent="newItemMethod">
-            <div id="newItem" class="field">
-              <label class="label">Create a new item</label>
-              <div class="control">
-                <input class="input" type="text" required v-model="newItem" placeholder="Buy apples">
-              </div>
-
-            </div>
-
-          </form>
-
-        </div>
-
-      </main>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/vue" charset="utf-8"></script>
-    <!-- CDNJS :: Sortable (https://cdnjs.com/) -->
-    <script src="//cdn.jsdelivr.net/npm/sortablejs@1.7.0/Sortable.min.js"></script>
-    <!-- CDNJS :: Vue.Draggable (https://cdnjs.com/) -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.15.0/vuedraggable.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.7.0/firebase.js"></script>
-    <script>
-      // Initialize Firebase
-      var config = {
-        apiKey: "AIzaSyDnagmlyOEza2stBcjWwql9Bjq6x6j8jZc",
-        authDomain: "list-40a3a.firebaseapp.com",
-        databaseURL: "https://list-40a3a.firebaseio.com",
-        projectId: "list-40a3a",
-        storageBucket: "list-40a3a.appspot.com",
-        messagingSenderId: "866203114923"
-      };
-      firebase.initializeApp(config);
-    </script>
-    <script src="./dist/bundle.js "></script>
-  </body>
+<body>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+</body>
 
 </html>
