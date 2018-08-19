@@ -43,26 +43,48 @@
 
 <script>
 import firebase from "firebase"
+import 'firebase/firestore';
 export default {
   name: 'app',
   data() {
     return {
       email: 'Ronan',
-      joke: 'loading...'
+      joke: 'loading...',
+      user: {
+        uid: null,
+        email: null
+      }
     }
   },
   mounted() {
-    fetch('http://api.icndb.com/jokes/random?escape=javascript&exclude=[explicit]').then((resp) => resp.json()).then((data)=> {
+    fetch('https://api.icndb.com/jokes/random?escape=javascript&exclude=[explicit]').then((resp) => resp.json()).then((data)=> {
         console.log(data)
         this.joke = data.value.joke
       }).catch((error)=> {
         this.joke = 'error'
       })
+    const db = firebase.firestore();
+    firebase.auth().onAuthStateChanged((user) =>{
+    if (user) {
+      // User is signed in.
+      this.user = user
+      db.collection(this.user.uid).get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        console.log(`${doc.id} => ${doc.data()}`);
+      });
+      });
+
+    } else {
+       this.user = false;
+       this.$router.push('/')
+    } 
+});
   }
 }
 </script>
 <style lang="scss" scoped>
 @import '../assets/vars.scss';
+
 .listsContainer {
   width: 100%;
   overflow-y: scroll;
@@ -140,7 +162,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 7% 2%;
+  padding: 10% 2%;
   color: $light;
   h1 {
     font-weight: 200;

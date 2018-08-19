@@ -10,11 +10,11 @@ var lastScrollTop = 0;
 window.addEventListener("scroll", function(){ // or window.addEventListener("scroll"....
    var st = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
    if (st > 0){
-      console.log('scrolling down')
+      //console.log('scrolling down')
       document.body.style.background = "rgb(231, 115, 126)";
       // downscroll code
    } else {
-      console.log('scrolling up')
+     // console.log('scrolling up')
       document.body.style.background = "rgb(239, 189, 107)";
       // upscroll code
    }
@@ -35,7 +35,7 @@ export default {
 <style lang="scss">
 html,
 body {
-  height: 100%;
+  height: 105%;
   font-family: sans-serif;
   font-weight: 200;
 }

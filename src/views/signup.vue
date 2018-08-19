@@ -67,7 +67,7 @@ export default {
 }
 .loginContainer {
   @include card;
-  height: 90%;
+  height: 75vh;
   width: 90%;
   @include center;
   background-color: rgba(255, 255, 255, 0.92);
